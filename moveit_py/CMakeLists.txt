@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 project(moveit_py)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_compile_options(-fsanitize=address)
+  add_compile_options(-fno-omit-frame-pointer)
+  add_compile_options(-g)
+  add_link_options(-fsanitize=address)
+endif()
+
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
